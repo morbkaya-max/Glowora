@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-site-verification" content="YOUR_CODE" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLOWORA | Everyday Skincare</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7fbf5;
+  color: #263b2b;
+}
+
+header {
+  background: #d9edcf;
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #315d38;
+  letter-spacing: 2px;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav button {
+  border: none;
+  background: #4d8153;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 22px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+nav button:hover {
+  background: #315d38;
+}
+
+.page {
+  display: none;
+  padding: 30px 5%;
+  min-height: 75vh;
+}
+
+.page.active {
+  display: block;
+}
+
+.hero {
+  background: linear-gradient(120deg, #e2f2d9, #fff4d9);
+  border-radius: 25px;
+  padding: 55px 25px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  color: #315d38;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+.main-btn {
+  background: #4d8153;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 13px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.main-btn:hover {
+  background: #315d38;
+}
+
+h2.section-title {
+  text-align: center;
+  color: #315d38;
+  margin: 25px 0;
+  font-size: 30px;
+}
+
+.serum {
+  background: #fff1d5;
+  border-radius: 22px;
+  padding: 30px;
+  text-align: center;
+  margin: 30px auto;
+  max-width: 850px;
+}
+
+.serum-art {
+  font-size: 75px;
+  margin: 15px;
+}
+
+.serum h2 {
+  color: #a66a20;
+  margin-bottom: 10px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-card {
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.product-art {
+  width: 100%;
+  height: 190px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 13px;
+}
+
+.product-art svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.product-card h3 {
+  margin: 10px 0;
+  color: #315d38;
+}
+
+.product-card p {
+  margin-bottom: 12px;
+  color: #526653;
+}
+
+.price {
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 13px;
+}
+
+.add-btn {
+  background: #4d8153;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-btn:hover {
+  background: #315d38;
+}
+
+.cart-list {
+  max-width: 900px;
+  margin: auto;
+}
+
+.cart-item {
+  background: white;
+  padding: 18px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+.cart-item h3 {
+  color: #315d38;
+  margin-bottom: 6px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #d9edcf;
+  color: #315d38;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #ffe6e6;
+  color: #c62828;
+  border: none;
+  border-radius: 20px;
+  padding: 9px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  background: #ffcaca;
+}
+
+.cart-total {
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 22px;
+  background: #e2f2d9;
+  border-radius: 15px;
+  text-align: right;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.empty {
+  background: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 18px;
+  margin: 25px auto;
+  max-width: 600px;
+}
+
+.empty h2 {
+  color: #315d38;
+  margin-bottom: 12px;
+}
+
+footer {
+  background: #d9edcf;
+  text-align: center;
+  padding: 25px;
+  color: #315d38;
+  margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 31px;
+  }
+
+  .cart-total {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🌿 GLOWORA</div>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('products')">Products</button>
+    <button onclick="showPage('cart')">
+      View Cart (<span id="cartCount">0</span>)
+    </button>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+<section id="home" class="page active">
+
+  <div class="hero">
+    <h1>GLOWORA</h1>
+    <p>Natural beauty. Fresh feeling. Happy skin.</p>
+    <p>Discover skincare inspired by nature and designed for everyday skin.</p>
+    <button class="main-btn" onclick="showPage('products')">
+      Explore Products
+    </button>
+  </div>
+
+  <div class="serum">
+    <div class="serum-art">🧴 🍊</div>
+    <h2>COMING SOON!</h2>
+    <h3>Vitamin C Serum</h3>
+    <p>Something fresh and special is on its way!</p>
+  </div>
+
+  <h2 class="section-title">Welcome to GLOWORA</h2>
+  <p style="text-align:center; line-height:1.7;">
+    Explore our collection of face washes inspired by beautiful ingredients.
+  </p>
+
+</section>
+
+<!-- PRODUCTS PAGE -->
+<section id="products" class="page">
+
+  <h2 class="section-title">Our Face Wash Collection 🌿</h2>
+
+  <div id="productsGrid" class="products-grid"></div>
+
+</section>
+
+<!-- CART PAGE -->
+<section id="cart" class="page">
+
+  <h2 class="section-title">Your Shopping Cart 🛒</h2>
+
+  <div id="cartItems" class="cart-list"></div>
+
+  <div id="cartTotal" class="cart-total">Total: ₹0</div>
+
+  <div style="text-align:center; margin:25px;">
+    <button class="main-btn" onclick="buyNow()">
+      Buy Now
+    </button>
+  </div>
+
+</section>
+
+<footer>
+  <h3>🌿 GLOWORA</h3>
+  <p>Designed for Everyday Skin</p>
+  <p style="margin-top:8px;">Thank you for visiting!</p>
+</footer>
+
+<script>
+
+// ALL PRODUCTS
+const products = [
+  { id: 1, name: "Charcoal Face Wash", price: 179, color: "#303030", ingredient: "CHARCOAL", emoji: "⚫" },
+  { id: 2, name: "Lemon Face Wash", price: 179, color: "#e6c928", ingredient: "LEMON", emoji: "🍋" },
+  { id: 3, name: "Daily Face Wash", price: 179, color: "#91b8c9", ingredient: "DAILY", emoji: "🪞" },
+  { id: 4, name: "Vitamin C Face Wash", price: 219, color: "#ef9c28", ingredient: "VITAMIN C", emoji: "🍊" },
+  { id: 5, name: "Aloe Vera Face Wash", price: 179, color: "#70ad50", ingredient: "ALOE VERA", emoji: "🌿" },
+  { id: 6, name: "Lichi Face Wash", price: 199, color: "#e78ca8", ingredient: "LICHI", emoji: "🍒" },
+  { id: 7, name: "Pineapple Face Wash", price: 199, color: "#e6c34b", ingredient: "PINEAPPLE", emoji: "🍍" },
+  { id: 8, name: "Orange Face Wash", price: 179, color: "#ef8d26", ingredient: "ORANGE", emoji: "🍊" },
+  { id: 9, name: "Mint Face Wash", price: 179, color: "#56a77a", ingredient: "MINT", emoji: "🌱" },
+  { id: 10, name: "Turmeric Face Wash", price: 199, color: "#d99b24", ingredient: "TURMERIC", emoji: "🌼" }
+];
+
+// SHOPPING CART
+let cart = [];
+
+try {
+  const savedCart = localStorage.getItem("gloworaCart");
+  cart = savedCart ? JSON.parse(savedCart) : [];
+  if (!Array.isArray(cart)) cart = [];
+} catch (error) {
+  cart = [];
+}
+
+// DRAW PRODUCT PICTURES
+function makeProductPicture(product) {
+  return `
+  <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="210" fill="#f5ead7"/>
+    <rect y="150" width="300" height="60" fill="#bd956b"/>
+    <path d="M0 164 Q70 155 150 165 T300 162" stroke="#9b704b" fill="none" stroke-width="3"/>
+    <path d="M0 190 Q80 180 160 191 T300 188" stroke="#9b704b" fill="none" stroke-width="2"/>
+
+    <ellipse cx="150" cy="155" rx="50" ry="9" fill="#806344" opacity=".25"/>
+
+    <rect x="125" y="25" width="50" height="18" rx="5" fill="#e8e8e8"/>
+    <rect x="130" y="15" width="40" height="15" rx="4" fill="#777"/>
+
+    <rect x="105" y="40" width="90" height="115" rx="17"
+      fill="${product.color}" stroke="#ffffff" stroke-width="3"/>
+
+    <rect x="115" y="70" width="70" height="58" rx="7" fill="#ffffff" opacity=".94"/>
+
+    <text x="150" y="88" text-anchor="middle" font-size="10"
+      font-weight="bold" fill="#315d38">GLOWORA</text>
+
+    <text x="150" y="104" text-anchor="middle" font-size="9"
+      fill="#333">${product.ingredient}</text>
+
+    <text x="150" y="117" text-anchor="middle" font-size="7"
+      fill="#555">FACE WASH</text>
+
+    <circle cx="50" cy="145" r="22" fill="${product.color}" opacity=".9"/>
+    <circle cx="50" cy="145" r="15" fill="#ffffff" opacity=".25"/>
+
+    <path d="M35 119 Q15 95 29 86 Q47 89 43 116"
+      fill="#568d4c"/>
+    <path d="M48 120 Q58 92 73 100 Q70 118 48 120"
+      fill="#72a75a"/>
+
+    <circle cx="250" cy="137" r="24" fill="${product.color}"/>
+    <path d="M250 113 Q246 99 259 97 Q261 108 250 113"
+      fill="#528c49"/>
+    <path d="M250 115 Q233 100 224 109 Q232 121 250 115"
+      fill="#6eaa59"/>
+
+    <text x="150" y="185" text-anchor="middle"
+      font-size="11" fill="#654a32">GLOWORA NATURAL CARE</text>
+  </svg>`;
+}
+
+// SHOW ALL PRODUCTS
+function displayProducts() {
+  const grid = document.getElementById("productsGrid");
+
+  grid.innerHTML = products.map(product => `
+    <div class="product-card">
+
+      <div class="product-art">
+        ${makeProductPicture(product)}
+      </div>
+
+      <h3>${product.name}</h3>
+      <p>${product.emoji} Inspired by nature</p>
+      <div class="price">₹${product.price}</div>
+
+      <button class="add-btn" onclick="addToCart(${product.id})">
+        Add to Cart
+      </button>
+
+    </div>
+  `).join("");
+}
+
+// NAVIGATION
+function showPage(page) {
+  document.querySelectorAll(".page").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  const selectedPage = document.getElementById(page);
+
+  if (!selectedPage) return;
+
+  selectedPage.classList.add("active");
+
+  if (page === "cart") {
+    displayCart();
+  }
+
+  window.scrollTo(0, 0);
+}
+
+// SAVE CART
+function saveCart() {
+  localStorage.setItem("gloworaCart", JSON.stringify(cart));
+  updateCartCount();
+  displayCart();
+}
+
+// UPDATE CART NUMBER
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById("cartCount").textContent = count;
+}
+
+// ADD PRODUCT TO CART
+function addToCart(productId) {
+  const product = products.find(item => item.id === productId);
+
+  if (!product) return;
+
+  const existingItem = cart.find(item => item.id === productId);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1
+    });
+  }
+
+  saveCart();
+  alert(product.name + " added to your cart!");
+}
+
+// DISPLAY CART
+function displayCart() {
+  const container = document.getElementById("cartItems");
+  const totalElement = document.getElementById("cartTotal");
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="empty">
+        <h2>Your cart is empty!</h2>
+        <p>Add some GLOWORA products to get started.</p>
+      </div>
+    `;
+
+    totalElement.textContent = "Total: ₹0";
+    return;
+  }
+
+  let total = 0;
+
+  container.innerHTML = cart.map((item, index) => {
+    total += item.price * item.quantity;
+
+    return `
+      <div class="cart-item">
+
+        <div>
+          <h3>${item.name}</h3>
+          <p>₹${item.price} each</p>
+        </div>
+
+        <div class="quantity">
+          <button onclick="changeQuantity(${index}, -1)">−</button>
+          <strong>${item.quantity}</strong>
+          <button onclick="changeQuantity(${index}, 1)">+</button>
+        </div>
+
+        <strong>₹${item.price * item.quantity}</strong>
+
+        <button class="delete-btn" onclick="deleteProduct(${index})">
+          🗑 Delete
+        </button>
+
+      </div>
+    `;
+  }).join("");
+
+  totalElement.textContent = "Total: ₹" + total;
+}
+
+// DELETE PRODUCT
+function deleteProduct(index) {
+  if (index < 0 || index >= cart.length) return;
+
+  const productName = cart[index].name;
+
+  if (confirm("Are you sure you want to delete " + productName + " from your cart?")) {
+    cart.splice(index, 1);
+    saveCart();
+  }
+}
+
+// CHANGE QUANTITY
+function changeQuantity(index, amount) {
+  if (index < 0 || index >= cart.length) return;
+
+  cart[index].quantity += amount;
+
+  if (cart[index].quantity <= 0) {
+    cart.splice(index, 1);
+  }
+
+  saveCart();
+}
+
+// BUY NOW - DEMO BUTTON
+function buyNow() {
+  if (cart.length === 0) {
+    alert("Your cart is empty! Please add a product first.");
+    return;
+  }
+
+  const total = cart.reduce((sum, item) => {
+    return sum + item.price * item.quantity;
+  }, 0);
+
+  alert("Thank you for shopping with GLOWORA! 🌿\nYour demo order total is ₹" + total + ".\nThis is a sample website, so no real payment will be taken.");
+}
+
+// START WEBSITE
+displayProducts();
+updateCartCount();
+
+</script>
+
+</body>
+</html>
